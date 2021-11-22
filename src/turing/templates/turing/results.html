@@ -1,0 +1,13 @@
+{% if result %}
+	<p>Found items : {{result|length}}</p>
+	<br>
+	{% for item in result %}
+		<li>{{item.name}}, {{item.country}}, {{item.city}}, {{item.category}}</li>
+
+	{% endfor %}
+	<a class="btn btn-defauly" href="/clientes">nueva busqueda</a>
+
+	<a href="{% url 'informe' %}" download="informe.csv"> Download File CSV</a>
+{% else %}
+	<p>Cliente no encontrado</p>
+{% endif %}

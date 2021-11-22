@@ -1,0 +1,38 @@
+<form action="results_informe" method="GET">
+    <label for="name">Buscar por name: </label>
+    <input type="text" name="name">
+    <!--<label for="name">Buscar por pais: </label>
+    <input type="text" name="country">
+    <label for="name">Buscar por categoria: </label>
+    <input type="text" name="category">
+    <label for="name">Buscar por ciudad: </label>
+    <input type="text" name="city">-->
+    <input type="submit" value="Buscar">-->
+</form>
+<hr>
+
+<div>
+    {% for clients in page_obj %}
+        {# Each "cliente" is a Cliente model object. #}
+        {{ clients.name|upper }}, {{clients.country|upper}}, {{clients.category|upper}}, {{clients.city|upper}}<br>
+    {% endfor %}
+</div>
+<br>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
